@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -27,7 +27,7 @@ requirements:
     - openssl
     - ldas-tools-al >=2.6.0
   run:
-    - zlib
+    - boost-cpp
     - openssl
     - ldas-tools-al >=2.6.0
 
