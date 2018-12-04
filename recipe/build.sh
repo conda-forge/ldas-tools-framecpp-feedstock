@@ -4,8 +4,7 @@
     --prefix=${PREFIX} \
     --disable-warnings-as-errors \
     --with-optimization=high \
-    --without-doxygen \
-    --without-boost-unit-test-framework
+    --without-doxygen
 make -j ${CPU_COUNT}
-make -j ${CPU_COUNT} check
 make -j ${CPU_COUNT} install
+make -j ${CPU_COUNT} check
