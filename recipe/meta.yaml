@@ -1,6 +1,6 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.6.3" %}
-{% set sha256 = "066a0f5a2d2bbdd04ee5247b9308668d935cd87b1dbf512c2565a7e4e3e4a540" %}
+{% set version = "2.6.4" %}
+{% set sha256 = "b572c0bf1a422f654905382428e79823573e661144c21b4514d045977ce3f267" %}
 {% set ldas_tools_al_version = "2.6.1" %}
 
 package:
