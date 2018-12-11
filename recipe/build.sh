@@ -3,6 +3,7 @@
 ./configure \
     --prefix=${PREFIX} \
     --disable-warnings-as-errors \
+    --with-boost=${PREFIX} \
     --with-optimization=high \
     --without-doxygen
 make -j ${CPU_COUNT}
