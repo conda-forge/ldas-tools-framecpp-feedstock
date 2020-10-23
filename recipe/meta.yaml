@@ -28,7 +28,7 @@ requirements:
   host:
     - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
-    - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
+    - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
     - openssl
     - zlib
   run:
