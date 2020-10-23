@@ -5,9 +5,11 @@ Home: https://wiki.ligo.org/Computing/LDASTools
 
 Package license: GPL-2.0-or-later
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-framecpp-feedstock/blob/master/LICENSE.txt)
 
 Summary: LDAS tools libframecpp toolkit runtime files
+
+Development: https://git.ligo.org/ldastools/LDAS_Tools
 
 This provides the runtime libraries for the framecpp library.
 
@@ -30,35 +32,37 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux</td>
+              <td>linux_64_boost_cpp1.72.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost_cpp1.72.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx</td>
+              <td>linux_64_boost_cpp1.74.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost_cpp1.74.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_boost_cpp1.72.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost_cpp1.72.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_boost_cpp1.74.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost_cpp1.74.0" alt="variant">
                 </a>
               </td>
             </tr>
           </tbody>
         </table>
       </details>
-    </td>
-  </tr>
-  <tr>
-    <td>Windows</td>
-    <td>
-      <img src="https://img.shields.io/badge/Windows-disabled-lightgrey.svg" alt="Windows disabled">
-    </td>
-  </tr>
-  <tr>
-    <td>Linux_ppc64le</td>
-    <td>
-      <img src="https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg" alt="ppc64le disabled">
     </td>
   </tr>
 </table>

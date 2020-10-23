@@ -14,7 +14,7 @@ source:
   sha256: "{{ sha256 }}"
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
@@ -28,7 +28,7 @@ requirements:
   host:
     - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
-    - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
+    - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
     - openssl
     - zlib
   run:
