@@ -2,8 +2,8 @@
 {% set version = "2.7.1" %}
 {% set sha256 = "88d9f1507c3591544ffb050cab7b68c052e85ff276c3128dc918d3cb10073830" %}
 
-{% set ldas_tools_al_version = "2.6.3" %}
-{% set ldas_tools_cmake_version = "1.0.8" %}
+{% set ldas_tools_al_version = "2.6.5" %}
+{% set ldas_tools_cmake_version = "1.2.2" %}
 
 package:
   name: {{ name }}
@@ -28,7 +28,7 @@ requirements:
   host:
     - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
-    - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
+    - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - openssl
     - zlib
   run:
