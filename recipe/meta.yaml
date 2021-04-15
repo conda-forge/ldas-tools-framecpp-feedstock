@@ -51,18 +51,18 @@ test:
     - framecpp_dump_toc fracfg.gwf
     - framecpp_transform --help
     - framecpp_verify --verbose Z-ilwd_test_frame-600000000-1.gwf
-    - pkg-config --print-errors --modversion framecpp  # [unix]
-    - pkg-config --print-errors --modversion framecpp_common  # [unix]
-    - pkg-config --print-errors --modversion framecppc  # [unix]
-    - pkg-config --print-errors --modversion framecpp3  # [unix]
-    - pkg-config --print-errors --modversion framecpp4  # [unix]
-    - pkg-config --print-errors --modversion framecpp6  # [unix]
-    - pkg-config --print-errors --modversion framecpp7  # [unix]
-    - pkg-config --print-errors --modversion framecpp8  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp_common  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecppc  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp3  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp4  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp6  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp7  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp8  # [unix]
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
-  dev_url: https://git.ligo.org/ldastools/LDAS_Tools
+  dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
   license: GPL-2.0-or-later
   license_family: GPL
   license_file: COPYING
