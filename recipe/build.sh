@@ -14,6 +14,7 @@ cmake \
 	${CMAKE_ARGS} \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true \
+	-DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
 ;
 
 # build
