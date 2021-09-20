@@ -9,7 +9,7 @@ if [ "$(uname)" == "Linux" ]; then
 fi
 
 # configure
-cmake ${SRC_DIR} \
+cmake ${CMAKE_ARGS} ${SRC_DIR} \
 	-DCMAKE_INSTALL_PREFIX=${PREFIX} \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 	-DCMAKE_INSTALL_LIBDIR="lib" \
@@ -19,6 +19,8 @@ cmake ${SRC_DIR} \
 cmake --build . -- -j${CPU_COUNT}
 
 # test
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
 ctest -V
+fi
 
 cmake --build . --target install
