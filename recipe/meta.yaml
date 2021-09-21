@@ -12,6 +12,8 @@ package:
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - no-test-frames.gwf  # [build_platform != target_platform]
 
 build:
   number: 0
