@@ -9,16 +9,21 @@ if [ "$(uname)" == "Linux" ]; then
 fi
 
 # configure
-cmake ${SRC_DIR} \
-	-DCMAKE_INSTALL_PREFIX=${PREFIX} \
+cmake \
+	${SRC_DIR} \
+	${CMAKE_ARGS} \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DCMAKE_INSTALL_LIBDIR="lib" \
-	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true
+	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true \
+	-DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
+;
 
 # build
-cmake --build . -- -j${CPU_COUNT}
+cmake --build . --parallel ${CPU_COUNT} --verbose
 
 # test
-ctest -V
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+	ctest --parallel ${CPU_COUNT} --verbose
+fi
 
-cmake --build . --target install
+# install
+cmake --build . --parallel ${CPU_COUNT} --verbose --target install

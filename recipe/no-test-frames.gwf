@@ -1,0 +1,32 @@
+--- src/Utilities/CMakeLists.txt	2021-03-26 13:47:46.000000000 +0000
++++ src/Utilities/CMakeLists.txt.2	2021-09-21 09:32:58.000000000 +0100
+@@ -153,29 +153,6 @@
+     ${INCLUDES}
+   )
+ 
+-##=========================================================================
+-## Test frames
+-##=========================================================================
+-
+-framecpp_target_gwf(
+-  TARGET test_frame_set_1
+-  TEST_FRAME_MODE
+-  DESCRIPTION R_std_test_frame_ver
+-  VERSIONS 3 4 6 7 8
+-  )
+-framecpp_target_gwf(
+-  TARGET test_frame_set_2
+-  DESCRIPTION std_test_frame_ver
+-  GPS_START 700000000
+-  VERSIONS 6 7 8
+-  )
+-framecpp_target_gwf(
+-  TARGET test_frame_set_3
+-  BUILDER framecpp_sample_c
+-  DESCRIPTION Sample_C_ver
+-  VERSIONS 8
+-  )
+-
+ ##========================================================================
+ ## Generate text
+ ##========================================================================
