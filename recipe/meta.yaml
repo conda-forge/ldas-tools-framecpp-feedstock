@@ -1,9 +1,9 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.7.3" %}
-{% set sha256 = "1b1e017a55d4305fa0ad2be1cc611e2717c589124054e7e976e70870d4d8b588" %}
+{% set version = "2.8.1" %}
 
-{% set ldas_tools_al_version = "2.6.6" %}
-{% set ldas_tools_cmake_version = "1.2.2" %}
+# dependency versions
+{% set ldas_tools_al_version = "2.6.7" %}
+{% set ldas_tools_cmake_version = "1.2.3" %}
 
 package:
   name: {{ name }}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 155dfdeb98055beccd6c8bdfba2da8dd304cbfba658669439278117571feda4c
   patches:
     - no-test-frames.gwf  # [build_platform != target_platform]
 
