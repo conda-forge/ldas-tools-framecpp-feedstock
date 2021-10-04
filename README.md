@@ -18,7 +18,21 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://travis-ci.com/conda-forge/ldas-tools-framecpp-feedstock">
+        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/ldas-tools-framecpp-feedstock/master.svg?label=macOS">
+      </a>
+    </td>
+  </tr><tr>
+    <td>Drone</td>
+    <td>
+      <a href="https://cloud.drone.io/conda-forge/ldas-tools-framecpp-feedstock">
+        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/ldas-tools-framecpp-feedstock/master.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -43,6 +57,34 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_64_openssl3" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_openssl1.1.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_openssl1.1.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_openssl3</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_openssl3" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_openssl1.1.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_openssl1.1.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_openssl3</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5104&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldas-tools-framecpp-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_openssl3" alt="variant">
                 </a>
               </td>
             </tr><tr>

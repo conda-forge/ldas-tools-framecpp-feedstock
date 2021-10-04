@@ -26,6 +26,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.6
+    - make  # [unix]
     - pkg-config  # [unix]
   host:
     - boost-cpp
