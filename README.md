@@ -11,6 +11,8 @@ Summary: LDAS tools libframecpp toolkit runtime files
 
 Development: https://git.ligo.org/ldastools/LDAS_Tools.git
 
+Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
+
 This provides the runtime libraries for the framecpp library.
 
 
