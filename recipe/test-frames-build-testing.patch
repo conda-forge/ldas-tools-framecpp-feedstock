@@ -1,0 +1,49 @@
+diff --git a/framecpp/src/Utilities/CMakeLists.txt b/framecpp/src/Utilities/CMakeLists.txt
+index 789504fb1..fe0411bca 100644
+--- a/framecpp/src/Utilities/CMakeLists.txt
++++ b/framecpp/src/Utilities/CMakeLists.txt
+@@ -157,24 +157,26 @@ cx_target_executable( framecpp_sample_c
+ ## Test frames
+ ##=========================================================================
+ 
+-framecpp_target_gwf(
+-  TARGET test_frame_set_1
+-  TEST_FRAME_MODE
+-  DESCRIPTION R_std_test_frame_ver
+-  VERSIONS 3 4 6 7 8
+-  )
+-framecpp_target_gwf(
+-  TARGET test_frame_set_2
+-  DESCRIPTION std_test_frame_ver
+-  GPS_START 700000000
+-  VERSIONS 6 7 8
+-  )
+-framecpp_target_gwf(
+-  TARGET test_frame_set_3
+-  BUILDER framecpp_sample_c
+-  DESCRIPTION Sample_C_ver
+-  VERSIONS 8
+-  )
++if (BUILD_TESTING)
++  framecpp_target_gwf(
++    TARGET test_frame_set_1
++    TEST_FRAME_MODE
++    DESCRIPTION R_std_test_frame_ver
++    VERSIONS 3 4 6 7 8
++    )
++  framecpp_target_gwf(
++    TARGET test_frame_set_2
++    DESCRIPTION std_test_frame_ver
++    GPS_START 700000000
++    VERSIONS 6 7 8
++    )
++  framecpp_target_gwf(
++    TARGET test_frame_set_3
++    BUILDER framecpp_sample_c
++    DESCRIPTION Sample_C_ver
++    VERSIONS 8
++    )
++endif()
+ 
+ ##========================================================================
+ ## Generate text
