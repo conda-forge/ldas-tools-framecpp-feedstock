@@ -69,6 +69,7 @@ test:
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
   dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
+  doc_url: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
   license: GPL-2.0-or-later
   license_family: GPL
   license_file: COPYING
