@@ -1,0 +1,14 @@
+diff --git a/framecpp/CMakeLists.txt b/framecpp/CMakeLists.txt
+index 56d93a3d3..ebcc7db87 100644
+--- a/framecpp/CMakeLists.txt
++++ b/framecpp/CMakeLists.txt
+@@ -393,6 +393,9 @@ endif( )
+ #========================================================================
+
+ function( framecpp_target_gtest target )
++  if (NOT BUILD_TESTING)
++    return()
++  endif()
+   set(options
+     )
+   set(oneValueArgs
