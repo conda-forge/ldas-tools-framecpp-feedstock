@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.8.2" %}
+{% set version = "2.9.0" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 9b0f1ba2b9f23a13e4141a23027f7491a33b57334c12154d261ac44ff3430d7a
+  sha256: afe0fdc4f1ee7327a8bfbc1aee1fab10a95a8ad2a0f9bf0d1536242505e363f5
   patches:
     - test-frames-build-testing.patch
     - gtest-build-testing.patch
