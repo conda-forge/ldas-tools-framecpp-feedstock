@@ -14,7 +14,6 @@ source:
   sha256: 032d3f707c0c3bda5b6f9121e1eabde326cdd2dc377e95533062744e4a56b929
   patches:
     - test-frames-build-testing.patch
-    - gtest-build-testing.patch
 
 build:
   number: 0
