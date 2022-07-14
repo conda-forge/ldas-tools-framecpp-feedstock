@@ -5,11 +5,13 @@ set -e
 mkdir -p _build
 pushd _build
 
-# enable testing only when not cross-compiling without an emulator
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
-	BUILD_TESTING="on"
-else
+set -x
+
+# if truly cross-compiling, disable the tests
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" && "${CROSSCOMPILING_EMULATOR}" == "" ]]; then
 	BUILD_TESTING="off"
+else
+	BUILD_TESTING="on"
 fi
 
 # link librt to get clock_gettime on older glibc versions
@@ -23,6 +25,7 @@ cmake \
 	${CMAKE_ARGS} \
 	-DBUILD_TESTING:BOOL=${BUILD_TESTING} \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DCMAKE_CROSSCOMPILING_EMULATOR:STRING="${CMAKE_CROSSCOMPILING_EMULATOR}" \
 	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true \
 	-DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
 ;
