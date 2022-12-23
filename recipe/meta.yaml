@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.9.1" %}
+{% set version = "3.0.0" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -11,13 +11,13 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 032d3f707c0c3bda5b6f9121e1eabde326cdd2dc377e95533062744e4a56b929
+  sha256: cf1e1d30eff8c952796e8ceac90267460f3d7541ea95d72dd9854dccdacf1d1c
   patches:
     # disable building static libraries
     - no-static.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
