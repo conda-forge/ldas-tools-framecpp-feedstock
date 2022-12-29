@@ -37,6 +37,7 @@ requirements:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - openssl
     - zlib
+    - zstd
   run:
     - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
