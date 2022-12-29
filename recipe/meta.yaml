@@ -15,6 +15,8 @@ source:
   patches:
     # disable building static libraries
     - no-static.patch
+    # backport https://git.ligo.org/computing/ldastools/LDAS_Tools/-/merge_requests/143
+    - fracfg-version9.patch
 
 build:
   number: 0

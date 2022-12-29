@@ -1,0 +1,22 @@
+diff --git a/framecpp/test/framecpp_fracfg.cc b/framecpp/test/framecpp_fracfg.cc
+index 031dcda93..bec30c69f 100644
+--- a/framecpp/test/framecpp_fracfg.cc
++++ b/framecpp/test/framecpp_fracfg.cc
+@@ -36,6 +36,7 @@
+ 
+ #include "framecpp/Common/FrameBuffer.hh"
+ 
++#include "framecpp/Version9/FrameStreamPlan.hh"
+ #include "framecpp/Version8/FrameStreamPlan.hh"
+ #include "framecpp/Version7/FrameStreamPlan.hh"
+ #include "framecpp/Version6/FrameStreamPlan.hh"
+@@ -350,6 +351,9 @@ main( int ArgC, char* ArgV[] )
+     //---------------------------------------------------------------------
+     switch ( version )
+     {
++    case 9:
++        FraCfg< 9, FrameCPP::Version_9::IFrameStreamPlan >( cl );
++        break;
+     case 8:
+         FraCfg< 8, FrameCPP::Version_8::IFrameStreamPlan >( cl );
+         break;
