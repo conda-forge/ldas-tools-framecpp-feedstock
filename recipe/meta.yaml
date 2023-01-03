@@ -6,11 +6,11 @@
 {% set ldas_tools_cmake_version = "1.2.3" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: c2701c0863571344939fb221fd81c576a5d1864a2b7da48b400eb809ad33002f
   patches:
     # disable building static libraries
