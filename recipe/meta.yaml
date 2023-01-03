@@ -65,6 +65,7 @@ test:
     - pkg-config --print-errors --exact-version {{ version }} framecpp6  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp7  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp8  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp9  # [unix]
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
