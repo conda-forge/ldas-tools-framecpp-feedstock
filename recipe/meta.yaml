@@ -37,7 +37,7 @@ requirements:
     - gtest
     - ldas-tools-al >={{ ldas_tools_al_version }}
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
-    - openssl
+    - openssl  # [not osx]
     - zlib
     - zstd
   run:
