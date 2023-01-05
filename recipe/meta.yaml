@@ -1,23 +1,27 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.9.1" %}
+{% set version = "3.0.1" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
 {% set ldas_tools_cmake_version = "1.2.3" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 032d3f707c0c3bda5b6f9121e1eabde326cdd2dc377e95533062744e4a56b929
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
+  sha256: c2701c0863571344939fb221fd81c576a5d1864a2b7da48b400eb809ad33002f
   patches:
     # disable building static libraries
     - no-static.patch
 
 build:
-  number: 2
+  error_overdepending: true
+  error_overlinking: true
+  ignore_run_exports:
+    - openssl  # [osx]
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
@@ -37,6 +41,7 @@ requirements:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - openssl
     - zlib
+    - zstd
   run:
     - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
@@ -65,6 +70,7 @@ test:
     - pkg-config --print-errors --exact-version {{ version }} framecpp6  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp7  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp8  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecpp9  # [unix]
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
