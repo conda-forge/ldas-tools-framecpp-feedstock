@@ -1,0 +1,6 @@
+# frameCPP requires openssl to be present on macOS
+# but doesn't link against it, so we need one and only one version
+ignore_version:  # [osx]
+  - openssl      # [osx]
+openssl:         # [osx]
+  - '3'          # [osx]
