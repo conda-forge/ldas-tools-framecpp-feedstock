@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "3.0.1" %}
+{% set version = "3.0.2" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: c2701c0863571344939fb221fd81c576a5d1864a2b7da48b400eb809ad33002f
+  sha256: 9aad4a9d99c16c2402995c6df0ecd04fb04b3692fbd41a52aa2f662978f508b6
   patches:
     # disable building static libraries
     - no-static.patch
