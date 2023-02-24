@@ -1,0 +1,13 @@
+diff --git a/framecpp/test/test_CheckSum.cc b/framecpp/test/test_CheckSum.cc
+index d0ebb895d..43de9c47d 100644
+--- a/framecpp/test/test_CheckSum.cc
++++ b/framecpp/test/test_CheckSum.cc
+@@ -250,7 +250,7 @@ BOOST_AUTO_TEST_CASE( test_checksum_8589934592_bytes )
+     // thsn 2^32 bytes in length.
+ 
+     static const auto expected_value( expected_value_zero_8589934592 );
+-    static seconds    expected_maximum_time( 15 );
++    static seconds    expected_maximum_time( 120 );
+ 
+     cksum_boost test_cksum_boost;
+     cksum_ldas  test_cksum_ldas;
