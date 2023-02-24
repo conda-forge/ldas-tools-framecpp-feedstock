@@ -1,8 +1,8 @@
-diff --git a/src/CInterface/CMakeLists.txt b/src/CInterface/CMakeLists.txt
-index ce1f47d27..0ed3cb5cc 100644
---- a/src/CInterface/CMakeLists.txt
-+++ b/src/CInterface/CMakeLists.txt
-@@ -122,7 +122,6 @@ cx_target_library(
+diff --git a/framecpp/src/CInterface/CMakeLists.txt b/framecpp/src/CInterface/CMakeLists.txt
+index e0623bde2..c38931f3b 100644
+--- a/framecpp/src/CInterface/CMakeLists.txt
++++ b/framecpp/src/CInterface/CMakeLists.txt
+@@ -124,7 +124,6 @@ cx_target_library(
    CURRENT ${libframecppc_la_CURRENT}
    REVISION ${libframecppc_la_REVISION}
    AGE ${libframecppc_la_AGE}
@@ -10,11 +10,11 @@ index ce1f47d27..0ed3cb5cc 100644
    SOURCES ${libframecppc_la_SOURCES}
    LIBRARIES ${libframecppc_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Common/CMakeLists.txt b/src/Common/CMakeLists.txt
-index bbdcad109..2f82b22fe 100644
---- a/src/Common/CMakeLists.txt
-+++ b/src/Common/CMakeLists.txt
-@@ -231,7 +231,6 @@ cx_target_library(
+diff --git a/framecpp/src/Common/CMakeLists.txt b/framecpp/src/Common/CMakeLists.txt
+index 5a584ebce..c26ac3ce8 100644
+--- a/framecpp/src/Common/CMakeLists.txt
++++ b/framecpp/src/Common/CMakeLists.txt
+@@ -236,7 +236,6 @@ cx_target_library(
    CURRENT ${libframecppcmn_la_CURRENT}
    REVISION ${libframecppcmn_la_REVISION}
    AGE ${libframecppcmn_la_AGE}
@@ -22,11 +22,11 @@ index bbdcad109..2f82b22fe 100644
    SOURCES ${nodist_libframecppcmn_la_SOURCES}
    LIBRARIES ${libframecppcmn_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/OOInterface/CMakeLists.txt b/src/OOInterface/CMakeLists.txt
-index a44e271e9..2d4ec8846 100644
---- a/src/OOInterface/CMakeLists.txt
-+++ b/src/OOInterface/CMakeLists.txt
-@@ -189,7 +189,6 @@ cx_target_library(
+diff --git a/framecpp/src/OOInterface/CMakeLists.txt b/framecpp/src/OOInterface/CMakeLists.txt
+index 363da93b5..70b071c40 100644
+--- a/framecpp/src/OOInterface/CMakeLists.txt
++++ b/framecpp/src/OOInterface/CMakeLists.txt
+@@ -199,7 +199,6 @@ cx_target_library(
    CURRENT ${libframecpp_la_CURRENT}
    REVISION ${libframecpp_la_REVISION}
    AGE ${libframecpp_la_AGE}
@@ -34,11 +34,11 @@ index a44e271e9..2d4ec8846 100644
    SOURCES ${libframecpp_la_SOURCES}
    LIBRARIES ${libframecpp_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Version3/CMakeLists.txt b/src/Version3/CMakeLists.txt
-index 0732c7812..1139dd71c 100644
---- a/src/Version3/CMakeLists.txt
-+++ b/src/Version3/CMakeLists.txt
-@@ -145,7 +145,6 @@ cx_target_library(
+diff --git a/framecpp/src/Version3/CMakeLists.txt b/framecpp/src/Version3/CMakeLists.txt
+index 93f344293..cbcddfc08 100644
+--- a/framecpp/src/Version3/CMakeLists.txt
++++ b/framecpp/src/Version3/CMakeLists.txt
+@@ -147,7 +147,6 @@ cx_target_library(
    CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
    REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
    AGE ${libframecpp${FRAME_SPEC}_la_AGE}
@@ -46,11 +46,11 @@ index 0732c7812..1139dd71c 100644
    SOURCES ${nodist_libframecpp${FRAME_SPEC}_la_SOURCES}
    LIBRARIES ${libframecpp${FRAME_SPEC}_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Version4/CMakeLists.txt b/src/Version4/CMakeLists.txt
-index 527fc3e7e..20c15629e 100644
---- a/src/Version4/CMakeLists.txt
-+++ b/src/Version4/CMakeLists.txt
-@@ -175,7 +175,6 @@ cx_target_library(
+diff --git a/framecpp/src/Version4/CMakeLists.txt b/framecpp/src/Version4/CMakeLists.txt
+index 378b3ece7..4c62de603 100644
+--- a/framecpp/src/Version4/CMakeLists.txt
++++ b/framecpp/src/Version4/CMakeLists.txt
+@@ -177,7 +177,6 @@ cx_target_library(
    CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
    REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
    AGE ${libframecpp${FRAME_SPEC}_la_AGE}
@@ -58,11 +58,11 @@ index 527fc3e7e..20c15629e 100644
    SOURCES ${nodist_libframecpp${FRAME_SPEC}_la_SOURCES}
    LIBRARIES ${libframecpp${FRAME_SPEC}_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Version6/CMakeLists.txt b/src/Version6/CMakeLists.txt
-index 173ac869b..c015a38f7 100644
---- a/src/Version6/CMakeLists.txt
-+++ b/src/Version6/CMakeLists.txt
-@@ -185,7 +185,6 @@ cx_target_library(
+diff --git a/framecpp/src/Version6/CMakeLists.txt b/framecpp/src/Version6/CMakeLists.txt
+index 9c2f93fee..1e15818a0 100644
+--- a/framecpp/src/Version6/CMakeLists.txt
++++ b/framecpp/src/Version6/CMakeLists.txt
+@@ -187,7 +187,6 @@ cx_target_library(
    CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
    REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
    AGE ${libframecpp${FRAME_SPEC}_la_AGE}
@@ -70,10 +70,10 @@ index 173ac869b..c015a38f7 100644
    SOURCES ${nodist_libframecpp${FRAME_SPEC}_la_SOURCES}
    LIBRARIES ${libframecpp${FRAME_SPEC}_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Version7/CMakeLists.txt b/src/Version7/CMakeLists.txt
+diff --git a/framecpp/src/Version7/CMakeLists.txt b/framecpp/src/Version7/CMakeLists.txt
 index 7e1d97334..c1bf7549c 100644
---- a/src/Version7/CMakeLists.txt
-+++ b/src/Version7/CMakeLists.txt
+--- a/framecpp/src/Version7/CMakeLists.txt
++++ b/framecpp/src/Version7/CMakeLists.txt
 @@ -164,7 +164,6 @@ cx_target_library(
    CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
    REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
@@ -82,11 +82,23 @@ index 7e1d97334..c1bf7549c 100644
    SOURCES ${nodist_libframecpp${FRAME_SPEC}_la_SOURCES}
    LIBRARIES ${libframecpp${FRAME_SPEC}_la_LIBADD}
    INCLUDE_DIRECTORIES BEFORE PRIVATE
-diff --git a/src/Version8/CMakeLists.txt b/src/Version8/CMakeLists.txt
-index ccb93e249..ffabd9708 100644
---- a/src/Version8/CMakeLists.txt
-+++ b/src/Version8/CMakeLists.txt
-@@ -175,7 +175,6 @@ cx_target_library(
+diff --git a/framecpp/src/Version8/CMakeLists.txt b/framecpp/src/Version8/CMakeLists.txt
+index 12a436ecd..b3d30dadb 100644
+--- a/framecpp/src/Version8/CMakeLists.txt
++++ b/framecpp/src/Version8/CMakeLists.txt
+@@ -182,7 +182,6 @@ cx_target_library(
+   CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
+   REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
+   AGE ${libframecpp${FRAME_SPEC}_la_AGE}
+-  STATIC
+   SOURCES ${nodist_libframecpp${FRAME_SPEC}_la_SOURCES}
+   LIBRARIES ${libframecpp${FRAME_SPEC}_la_LIBADD}
+   INCLUDE_DIRECTORIES BEFORE PRIVATE
+diff --git a/framecpp/src/Version9/CMakeLists.txt b/framecpp/src/Version9/CMakeLists.txt
+index cba689ad3..ec9fe73b2 100644
+--- a/framecpp/src/Version9/CMakeLists.txt
++++ b/framecpp/src/Version9/CMakeLists.txt
+@@ -151,7 +151,6 @@ cx_target_library(
    CURRENT ${libframecpp${FRAME_SPEC}_la_CURRENT}
    REVISION ${libframecpp${FRAME_SPEC}_la_REVISION}
    AGE ${libframecpp${FRAME_SPEC}_la_AGE}
