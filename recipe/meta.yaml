@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "2.9.1" %}
+{% set version = "2.9.2" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -10,14 +10,16 @@ package:
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 032d3f707c0c3bda5b6f9121e1eabde326cdd2dc377e95533062744e4a56b929
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
+  sha256: 077d44716f568fc775e4306ba1c8328ad25f48c9041423506a727b502a1e072e
   patches:
     # disable building static libraries
     - no-static.patch
+    # allow for longer test timeout when emulating
+    - test-timeout.patch  # [build_platform != target_platform]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
