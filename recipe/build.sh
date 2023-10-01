@@ -19,6 +19,11 @@ if [ "$(uname)" == "Linux" ]; then
 	export LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
+# build somehow overrides cmake's standard -DCMAKE_CXX_STANDARD=14, probably due to
+# https://git.ligo.org/computing/ldastools/LDAS_Tools/-/blob/master/framecpp/CMakeLists.txt#L57
+# need to use C++14, because the code still uses std::binary_function, which got removed in C++17
+export CMAKE_CXX_STANDARD="14"
+
 # configure
 cmake \
 	${SRC_DIR} \
