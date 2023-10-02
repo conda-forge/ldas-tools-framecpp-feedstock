@@ -15,13 +15,16 @@ source:
   patches:
     # disable building static libraries
     - no-static.patch
+    # force use of c++14
+    - c++14.patch
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     - openssl  # [osx]
-  number: 1
+    - gtest
+  number: 2
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
@@ -34,7 +37,7 @@ requirements:
     - make  # [unix]
     - pkg-config  # [unix]
   host:
-    - boost-cpp
+    - libboost-devel
     - gmock
     - gtest
     - ldas-tools-al >={{ ldas_tools_al_version }}
@@ -43,7 +46,6 @@ requirements:
     - zlib
     - zstd
   run:
-    - boost-cpp
     - ldas-tools-al >={{ ldas_tools_al_version }}
 
 test:
