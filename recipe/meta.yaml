@@ -19,7 +19,12 @@ source:
     - test-timeout.patch  # [build_platform != target_platform]
 
 build:
-  number: 1
+  error_overdepending: true
+  error_overlinking: true
+  ignore_run_exports:
+    - openssl  # [osx]
+    - gtest
+  number: 2
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
