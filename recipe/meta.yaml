@@ -33,7 +33,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - cmake >=3.6
+    - cmake >=3.6,!=3.27.*
     - make  # [unix]
     - pkg-config  # [unix]
   host:
