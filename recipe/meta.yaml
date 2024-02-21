@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "3.0.2" %}
+{% set version = "3.0.3" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -11,12 +11,10 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 9aad4a9d99c16c2402995c6df0ecd04fb04b3692fbd41a52aa2f662978f508b6
+  sha256: 0bcd4276bf86c5c7c8d03c7e5baea1940577411e19ad96ed3f0e8f9c40c586a8
   patches:
-    # disable building static libraries
-    - no-static.patch
-    # force use of c++14
-    - c++14.patch
+    # increase 15-second timeout for CheckSum tests
+    - test-timeout.patch  # [build_platform != target_platform]
 
 build:
   error_overdepending: true
@@ -24,7 +22,7 @@ build:
   ignore_run_exports:
     - openssl  # [osx]
     - gtest
-  number: 3
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
