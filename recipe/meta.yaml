@@ -12,9 +12,6 @@ package:
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 0bcd4276bf86c5c7c8d03c7e5baea1940577411e19ad96ed3f0e8f9c40c586a8
-  patches:
-    # force use of c++14
-    - c++14.patch
 
 build:
   error_overdepending: true
