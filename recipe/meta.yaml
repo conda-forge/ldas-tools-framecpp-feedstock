@@ -13,6 +13,8 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 83fb48b2260af0ac5c710bf9d32a31619a86d922de8f86441e7195d0753353b1
   patches:
+    # disable building static libraries
+    - no-static.patch
     # allow for longer test timeout when emulating
     - test-timeout.patch  # [build_platform != target_platform]
 
