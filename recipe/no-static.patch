@@ -1,15 +1,3 @@
-diff --git a/framecpp/src/CInterface/CMakeLists.txt b/framecpp/src/CInterface/CMakeLists.txt
-index e0623bde2..c38931f3b 100644
---- a/framecpp/src/CInterface/CMakeLists.txt
-+++ b/framecpp/src/CInterface/CMakeLists.txt
-@@ -124,7 +124,6 @@ cx_target_library(
-   CURRENT ${libframecppc_la_CURRENT}
-   REVISION ${libframecppc_la_REVISION}
-   AGE ${libframecppc_la_AGE}
--  STATIC
-   SOURCES ${libframecppc_la_SOURCES}
-   LIBRARIES ${libframecppc_la_LIBADD}
-   INCLUDE_DIRECTORIES BEFORE PRIVATE
 diff --git a/framecpp/src/Common/CMakeLists.txt b/framecpp/src/Common/CMakeLists.txt
 index 5a584ebce..c26ac3ce8 100644
 --- a/framecpp/src/Common/CMakeLists.txt
