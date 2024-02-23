@@ -13,6 +13,8 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 0bcd4276bf86c5c7c8d03c7e5baea1940577411e19ad96ed3f0e8f9c40c586a8
   patches:
+    # disable building static libraries
+    - no-static.patch
     # increase 15-second timeout for CheckSum tests
     - test-timeout.patch  # [build_platform != target_platform]
 
