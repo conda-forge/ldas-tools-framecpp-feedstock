@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "3.0.3" %}
+{% set version = "3.0.4" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.6.7" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 0bcd4276bf86c5c7c8d03c7e5baea1940577411e19ad96ed3f0e8f9c40c586a8
+  sha256: 6c5769f5eeee5b5eace74d0e617527b03574af6c5c0a5e30b2ef60a63e05b599
   patches:
     # increase 15-second timeout for CheckSum tests
     - test-timeout.patch  # [build_platform != target_platform]
