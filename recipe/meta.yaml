@@ -45,6 +45,7 @@ requirements:
     - zstd
   run:
     - ldas-tools-al >={{ ldas_tools_al_version }}
+    - openssl
 
 test:
   requires:
