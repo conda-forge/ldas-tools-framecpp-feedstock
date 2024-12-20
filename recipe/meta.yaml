@@ -15,8 +15,6 @@ source:
   patches:
     # disable building static libraries
     - no-static.patch
-    # increase 15-second timeout for CheckSum tests
-    - test-timeout.patch  # [build_platform != target_platform]
 
 build:
   error_overdepending: true
