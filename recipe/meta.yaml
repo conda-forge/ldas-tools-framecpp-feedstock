@@ -13,8 +13,8 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 62fd7cca97e83862e0699a44e9a30946f938621468a3bf05a94d4289f3fc5712
   patches:
-    # disable building static libraries
-    - no-static.patch
+    - 0001-disable-building-statically-linked-libraries.patch
+    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
 
 build:
   error_overdepending: true
