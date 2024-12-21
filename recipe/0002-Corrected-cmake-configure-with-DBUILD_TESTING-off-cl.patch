@@ -1,0 +1,167 @@
+From b15afa69ce1e4d5018ca42a6cda2eb47fad518d5 Mon Sep 17 00:00:00 2001
+From: Edward Maros <ed.maros@ligo.org>
+Date: Fri, 20 Dec 2024 17:59:11 -0800
+Subject: [PATCH 2/2] Corrected cmake configure with -DBUILD_TESTING=off
+ (closes #229)
+
+(cherry picked from commit b87ba791205d5c50d8e05d1470089fbbcdf32730)
+---
+ framecpp/CMakeLists.txt      | 23 ++++++-------
+ framecpp/ChangeLog.md        |  5 ++-
+ framecpp/test/CMakeLists.txt | 62 ++++++++++++++++++++----------------
+ 3 files changed, 50 insertions(+), 40 deletions(-)
+
+diff --git a/framecpp/CMakeLists.txt b/framecpp/CMakeLists.txt
+index 6752cb81f..b94b20826 100644
+--- a/framecpp/CMakeLists.txt
++++ b/framecpp/CMakeLists.txt
+@@ -75,17 +75,18 @@ project( ${LDAS_TOOLS_FRAMECPP_PACKAGE_NAME} )
+ 
+ function( cl_target_test_help executable )
+   set(test_name ${executable}_help)
+-  cx_target_test(
+-    ${test_name}
+-    COMMAND ${executable} --help
+-    DEPENDS ${executable}
+-  )
+-  set_tests_properties(
+-    ${test_name}
+-    PROPERTIES
+-    ENVIRONMENT "ASAN_OPTIONS=$ENV{ASAN_OPTIONS}"
+-  )
+-
++  if ( BUILD_TESTING )
++    cx_target_test(
++      ${test_name}
++      COMMAND ${executable} --help
++      DEPENDS ${executable}
++    )
++    set_tests_properties(
++      ${test_name}
++      PROPERTIES
++      ENVIRONMENT "ASAN_OPTIONS=$ENV{ASAN_OPTIONS}"
++    )
++  endif( )
+ endfunction( )
+ 
+ #------------------------------------------------------------------------
+diff --git a/framecpp/ChangeLog.md b/framecpp/ChangeLog.md
+index 92d018a9f..b36652eee 100644
+--- a/framecpp/ChangeLog.md
++++ b/framecpp/ChangeLog.md
+@@ -1,5 +1,8 @@
++# Release NEXT - 
++    - Corrected cmake configure with -DBUILD_TESTING=off (closes #229)
++
+ # Release 3.0.5 - Mon Dec 16 2024
+-  * Corrected issues revealed by address sanitizer
++    - Corrected issues revealed by address sanitizer
+ 
+ # Release 3.0.4 - Tue March 26, 2024
+     - Corrected initialization order
+diff --git a/framecpp/test/CMakeLists.txt b/framecpp/test/CMakeLists.txt
+index 34bb056c2..8b8d54a20 100644
+--- a/framecpp/test/CMakeLists.txt
++++ b/framecpp/test/CMakeLists.txt
+@@ -84,10 +84,12 @@ function( framecpp_target_test target )
+       ${ARG_INCLUDES}
+       )
+   add_dependencies( ${target} framecpp )
+-  cx_target_test( ${target}
+-    COMMAND ${target} ${ARG_COMMAND_ARGS}
+-    ENVIRONMENT ${TESTS_ENVIRONMENT}
++  if ( BUILD_TESTING )
++    cx_target_test( ${target}
++      COMMAND ${target} ${ARG_COMMAND_ARGS}
++      ENVIRONMENT ${TESTS_ENVIRONMENT}
+     )
++  endif( )
+ endfunction( )
+ 
+ function( framecpp_target_test_downconvert version )
+@@ -106,12 +108,13 @@ function( framecpp_target_test_downconvert version )
+   set(_frame_filename "Z-${_frame_description}-${_frame_start_time}-${_frame_duration}.gwf")
+   set(_frame_filename_full "${CMAKE_CURRENT_BINARY_DIR}/${_frame_filename}")
+ 
+-  #----------------------------------------------------------------------
+-  # Setup test
+-  #----------------------------------------------------------------------
+-  add_test(
+-    NAME "setup_downconvert_framecpp_sample_${version}"
+-    COMMAND ${CMAKE_COMMAND} -E env
++  if ( BUILD_TESTING )
++    #--------------------------------------------------------------------
++    # Setup test
++    #--------------------------------------------------------------------
++    add_test(
++      NAME "setup_downconvert_framecpp_sample_${version}"
++      COMMAND ${CMAKE_COMMAND} -E env
+       $<TARGET_FILE:framecpp_sample>
+         --detector LIGO_India
+         --description ${_frame_description}
+@@ -126,27 +129,28 @@ function( framecpp_target_test_downconvert version )
+         --with-fr-summary
+         --with-fr-table
+     )
+-  #----------------------------------------------------------------------
+-  # Testing of down conversion
+-  #----------------------------------------------------------------------
+-  add_test(
+-    NAME "test_downconvert_framecpp_sample_${version}"
+-    COMMAND ${CMAKE_COMMAND} -E env
++    #--------------------------------------------------------------------
++    # Testing of down conversion
++    #--------------------------------------------------------------------
++    add_test(
++      NAME "test_downconvert_framecpp_sample_${version}"
++      COMMAND ${CMAKE_COMMAND} -E env
+       $<TARGET_FILE:framecpp_verify> --verbose --verbose --force
+       ${CMAKE_CURRENT_BINARY_DIR}/${_frame_filename}
+     )
+ 
+-  #----------------------------------------------------------------------
+-  # Establish test dependencies using fixtures
+-  #----------------------------------------------------------------------
+-  set_tests_properties( "setup_downconvert_framecpp_sample_${version}"
+-    PROPERTIES
++    #--------------------------------------------------------------------
++    # Establish test dependencies using fixtures
++    #--------------------------------------------------------------------
++    set_tests_properties( "setup_downconvert_framecpp_sample_${version}"
++      PROPERTIES
+       FIXTURES_SETUP "fixture_downconvert_framecpp_sample_${version}"
+     )
+-  set_tests_properties( "test_downconvert_framecpp_sample_${version}"
+-    PROPERTIES
++    set_tests_properties( "test_downconvert_framecpp_sample_${version}"
++      PROPERTIES
+       FIXTURES_REQUIRES "fixture_downconvert_framecpp_sample_${version}"
+     )
++  endif( )
+ endfunction( )
+ 
+ set( LDAS_DIRECTORY_BUILD_LIB_FRAMECPP ${CMAKE_BINARY_DIR} )
+@@ -344,12 +348,14 @@ endif( )
+ ##========================================================================
+ framecpp_target_test( utilities SOURCES test_utilities.cc )
+ 
+-cx_target_test( framecpp_fracfg
+-  COMMAND framecpp_fracfg
+-    --channels Z0:RAMPED_INT_2U_1
+-    --output fracfg.gwf
+-    ${CMAKE_BINARY_DIR}/src/Utilities/Z-R_std_test_frame_ver9-600000000-1.gwf
+-)
++if ( BUILD_TESTING )
++  cx_target_test( framecpp_fracfg
++    COMMAND framecpp_fracfg
++      --channels Z0:RAMPED_INT_2U_1
++      --output fracfg.gwf
++      ${CMAKE_BINARY_DIR}/src/Utilities/Z-R_std_test_frame_ver9-600000000-1.gwf
++  )
++endif( )
+ 
+ ##-----------------------------------------------------------------------
+ ## framecpp_sample --description downconvert_ver_<ver> --version <ver>
+-- 
+2.39.5
+

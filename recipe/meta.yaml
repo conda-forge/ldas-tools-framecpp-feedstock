@@ -1,9 +1,9 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "3.0.3" %}
+{% set version = "3.0.5" %}
 
 # dependency versions
-{% set ldas_tools_al_version = "2.6.7" %}
-{% set ldas_tools_cmake_version = "1.2.3" %}
+{% set ldas_tools_al_version = "2.7.0" %}
+{% set ldas_tools_cmake_version = "1.3.1" %}
 
 package:
   name: {{ name|lower }}
@@ -11,20 +11,17 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 0bcd4276bf86c5c7c8d03c7e5baea1940577411e19ad96ed3f0e8f9c40c586a8
+  sha256: 62fd7cca97e83862e0699a44e9a30946f938621468a3bf05a94d4289f3fc5712
   patches:
-    # disable building static libraries
-    - no-static.patch
-    # increase 15-second timeout for CheckSum tests
-    - test-timeout.patch  # [build_platform != target_platform]
+    - 0001-disable-building-statically-linked-libraries.patch
+    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
-    - openssl  # [osx]
     - gtest
-  number: 3
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
@@ -48,6 +45,7 @@ requirements:
     - zstd
   run:
     - ldas-tools-al >={{ ldas_tools_al_version }}
+    - openssl
 
 test:
   requires:
