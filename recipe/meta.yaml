@@ -24,7 +24,7 @@ build:
   ignore_run_exports:
     - openssl  # [osx]
     - gtest
-  number: 3
+  number: 4
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
