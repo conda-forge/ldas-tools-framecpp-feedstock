@@ -1,0 +1,90 @@
+schema_version: 1
+
+context:
+  name: ldas-tools-framecpp
+  version: 4.0.1
+  # dependency versions
+  ldas_tools_al_version: 2.7.0
+  ldas_tools_cmake_version: 1.3.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  sha256: 9b62a57d5bcff603f6efcbd98c6647eca5ba177e5fad6eac416a5dcaa1295343
+  patches:
+    - 0001-disable-building-statically-linked-libraries.patch
+    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
+
+build:
+  dynamic_linking:
+    overdepending_behavior: error
+    overlinking_behavior: error
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake >=3.6,!=3.27.*
+    - make
+    - pkg-config
+  host:
+    - gmock
+    - gtest
+    - ldas-tools-al >=${{ ldas_tools_al_version }}
+    - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+    - libboost-devel
+    - openssl
+    - zlib
+    - zstd
+  run_exports:
+    - ${{ pin_subpackage("ldas-tools-framecpp", upper_bound="x.x") }}
+  ignore_run_exports:
+    by_name:
+      - gtest
+
+tests:
+  - requirements:
+      run:
+        - pkg-config
+    script:
+      - framecpp_sample
+      - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_dump_objects --silent Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_dump_toc Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_fix_metadata --output fixed.gwf Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
+      - framecpp_dump_toc fracfg.gwf
+      - framecpp_transform --help
+      - framecpp_verify --verbose Z-ilwd_test_frame-600000000-1.gwf
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp_common
+      - pkg-config --print-errors --exact-version ${{ version }} framecppc
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp3
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp4
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp6
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp7
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp8
+      - pkg-config --print-errors --exact-version ${{ version }} framecpp9
+
+about:
+  summary: LDAS tools libframecpp toolkit runtime files
+  description: |
+    This provides the runtime libraries for the framecpp library.
+  homepage: https://wiki.ligo.org/Computing/LDASTools
+  repository: https://git.ligo.org/ldastools/LDAS_Tools.git
+  documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
+  license: GPL-2.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - emaros
