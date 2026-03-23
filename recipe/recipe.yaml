@@ -14,9 +14,6 @@ package:
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
   sha256: 9b62a57d5bcff603f6efcbd98c6647eca5ba177e5fad6eac416a5dcaa1295343
-  patches:
-    - 0001-disable-building-statically-linked-libraries.patch
-    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
 
 build:
   dynamic_linking:
