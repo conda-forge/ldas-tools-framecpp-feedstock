@@ -1,5 +1,7 @@
 #!/bin/bash
 
+CPU_COUNT=1
+
 set -e
 
 mkdir -p _build
