@@ -15,7 +15,6 @@ Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-f
 
 This provides the runtime libraries for the framecpp library.
 
-
 Current build status
 ====================
 
