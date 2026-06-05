@@ -2,8 +2,8 @@
 {% set version = "4.0.3" %}
 
 # dependency versions
-{% set ldas_tools_al_version = "2.7.0" %}
-{% set ldas_tools_cmake_version = "1.3.1" %}
+{% set ldas_tools_al_version = "2.8.0" %}
+{% set ldas_tools_cmake_version = "1.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -12,9 +12,6 @@ package:
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: efa63df2fecc821a28ddab5bc5207d4b72f12f08aa66ed5acacbfa31904e9873
-  patches:
-    - 0001-disable-building-statically-linked-libraries.patch
-    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
 
 build:
   error_overdepending: true
