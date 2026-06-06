@@ -50,6 +50,11 @@ test:
   commands:
     # framecpp_sample creates Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_sample
+    # DIAGNOSTIC for LDAS_Tools#283: confirm file state between sample and checksum
+    - 'echo "=== diag: pre-sync ==="; ls -la Z-ilwd_test_frame-600000000-1.gwf || true; stat Z-ilwd_test_frame-600000000-1.gwf || true'
+    - 'sync; sleep 1; echo "=== diag: post-sync+sleep ==="; ls -la Z-ilwd_test_frame-600000000-1.gwf || true; stat Z-ilwd_test_frame-600000000-1.gwf || true'
+    - 'echo "=== diag: file head (od first 64 bytes) ==="; od -c -N 64 Z-ilwd_test_frame-600000000-1.gwf || true'
+    - 'echo "=== diag: now running framecpp_checksum ==="'
     - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
