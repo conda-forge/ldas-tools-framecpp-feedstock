@@ -1,9 +1,9 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "3.0.5" %}
+{% set version = "4.0.3" %}
 
 # dependency versions
-{% set ldas_tools_al_version = "2.7.0" %}
-{% set ldas_tools_cmake_version = "1.3.1" %}
+{% set ldas_tools_al_version = "2.8.0" %}
+{% set ldas_tools_cmake_version = "1.4.2" %}
 
 package:
   name: {{ name|lower }}
@@ -11,17 +11,14 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 62fd7cca97e83862e0699a44e9a30946f938621468a3bf05a94d4289f3fc5712
-  patches:
-    - 0001-disable-building-statically-linked-libraries.patch
-    - 0002-Corrected-cmake-configure-with-DBUILD_TESTING-off-cl.patch
+  sha256: efa63df2fecc821a28ddab5bc5207d4b72f12f08aa66ed5acacbfa31904e9873
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     - gtest
-  number: 1
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
@@ -51,8 +48,14 @@ test:
   requires:
     - pkg-config  # [unix]
   commands:
-    # framecpp_sample creates Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_sample
+    # framecpp_sample with --channel-adc-type int_2u writes
+    # Z-ilwd_test_frame-600000000-1.gwf containing channel
+    # Z0:RAMPED_INT_2U_1. Pre-4.0.x the bare 'framecpp_sample' command
+    # produced both the file (Z-ilwd_test_frame-...) and the channel; in
+    # 4.0.x the file is named differently and channels are only emitted
+    # via the all_type_frame path triggered by --channel-*-type flags.
+    # See https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/283
+    - framecpp_sample --channel-adc-type int_2u
     - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
@@ -62,16 +65,16 @@ test:
     - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_dump_toc fracfg.gwf
     - framecpp_transform --help
-    - framecpp_verify --verbose Z-ilwd_test_frame-600000000-1.gwf
+    # framecpp_verify's --verbose now takes an int (verbosity level) in 4.0.x
+    - framecpp_verify --verbose 1 Z-ilwd_test_frame-600000000-1.gwf
+    # 4.0.x consolidated all version-specific libframecppN into a single
+    # libframecppu (Universal); the framecpp{3,4,5,6,7,8,9}.pc files
+    # are no longer generated. See the version consolidation notes in
+    # framecpp/CLAUDE.md and ChangeLog.md for 4.0.x.
     - pkg-config --print-errors --exact-version {{ version }} framecpp  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp_common  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecppc  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp3  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp4  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp6  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp7  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp8  # [unix]
-    - pkg-config --print-errors --exact-version {{ version }} framecpp9  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} framecppu  # [unix]
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
