@@ -65,7 +65,8 @@ test:
     - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
     - framecpp_dump_toc fracfg.gwf
     - framecpp_transform --help
-    - framecpp_verify --verbose Z-ilwd_test_frame-600000000-1.gwf
+    # framecpp_verify's --verbose now takes an int (verbosity level) in 4.0.x
+    - framecpp_verify --verbose 1 Z-ilwd_test_frame-600000000-1.gwf
     - pkg-config --print-errors --exact-version {{ version }} framecpp  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp_common  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecppc  # [unix]
