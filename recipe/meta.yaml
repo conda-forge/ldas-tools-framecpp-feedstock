@@ -48,18 +48,22 @@ test:
   requires:
     - pkg-config  # [unix]
   commands:
-    # framecpp_sample creates Z-ilwd_test_frame-600000000-1.gwf
+    # framecpp_sample (default test-frame mode, version 8) writes
+    # Z-R_std_test_frame_ver8-600000000-1.gwf. Pre-4.0.x this used to be
+    # Z-ilwd_test_frame-600000000-1.gwf -- the filename changed when the
+    # default-description branch in FrSampleCommon.hh::GetFilename was added.
+    # See https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/283
     - framecpp_sample
-    - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_dump_objects --silent Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_dump_toc Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_fix_metadata --output fixed.gwf Z-ilwd_test_frame-600000000-1.gwf
-    - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
+    - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_compressor --compression-level 9 --output compressed.gwf Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_dump_objects --silent Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_dump_toc Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_fix_metadata --output fixed.gwf Z-R_std_test_frame_ver8-600000000-1.gwf
+    - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-R_std_test_frame_ver8-600000000-1.gwf
     - framecpp_dump_toc fracfg.gwf
     - framecpp_transform --help
-    - framecpp_verify --verbose Z-ilwd_test_frame-600000000-1.gwf
+    - framecpp_verify --verbose Z-R_std_test_frame_ver8-600000000-1.gwf
     - pkg-config --print-errors --exact-version {{ version }} framecpp  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecpp_common  # [unix]
     - pkg-config --print-errors --exact-version {{ version }} framecppc  # [unix]
