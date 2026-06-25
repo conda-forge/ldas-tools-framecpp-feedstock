@@ -14,6 +14,9 @@ package:
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
   sha256: 8bfd356ccfbca9edc3e927a8750611e06b7f5650d216f12bcc7b3b24d8918901
+  patches:
+    - if: osx
+      then: largeframetest-timeout.patch
 
 build:
   dynamic_linking:
