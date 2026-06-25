@@ -52,16 +52,18 @@ tests:
     script:
       - set -x
       - framecpp_sample --channel-adc-type int_2u
-      - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_dump_objects --silent Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_dump_toc Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_fix_metadata --output fixed.gwf Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
-      - framecpp_dump_toc fracfg.gwf
-      - framecpp_transform --help
-      - framecpp_verify --verbose 1 Z-ilwd_test_frame-600000000-1.gwf
+      - if: build_platform == target_platform
+        then:
+          - framecpp_checksum --verbose --checksum-file --checksum-frame --checksum-structure Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_compressor --compression-level 9 --output compressed.gwf Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_dump_channel --channel Z0:RAMPED_INT_2U_1 Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_dump_objects --silent Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_dump_toc Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_fix_metadata --output fixed.gwf Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_fracfg --channels Z0:RAMPED_INT_2U_1 --output fracfg.gwf Z-ilwd_test_frame-600000000-1.gwf
+          - framecpp_dump_toc fracfg.gwf
+          - framecpp_transform --help
+          - framecpp_verify --verbose 1 Z-ilwd_test_frame-600000000-1.gwf
       # pkg-config version checks
       - pkg-config --print-errors --exact-version ${{ version }} framecpp
       - pkg-config --print-errors --exact-version ${{ version }} framecpp_common
