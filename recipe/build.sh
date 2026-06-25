@@ -9,27 +9,25 @@ set -x
 
 # if truly cross-compiling, disable the tests
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" && "${CROSSCOMPILING_EMULATOR}" == "" ]]; then
-	BUILD_TESTING="off"
+  BUILD_TESTING="off"
 else
-	BUILD_TESTING="on"
+  BUILD_TESTING="on"
 fi
 
 # link librt to get clock_gettime on older glibc versions
 if [ "$(uname)" == "Linux" ]; then
-	export LDFLAGS="-lrt ${LDFLAGS}"
+  export LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
 # configure
 cmake \
-	${SRC_DIR} \
-	${CMAKE_ARGS} \
-	-DBUILD_STATIC_LIBS:BOOL=OFF \
-	-DBUILD_TESTING:BOOL=${BUILD_TESTING} \
-	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DCMAKE_CROSSCOMPILING_EMULATOR:STRING="${CMAKE_CROSSCOMPILING_EMULATOR}" \
-	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true \
-	-DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
-	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5 \
+  ${CMAKE_ARGS} \
+  -DBUILD_STATIC_LIBS:BOOL=OFF \
+  -DBUILD_TESTING:BOOL=${BUILD_TESTING} \
+  -DCMAKE_CROSSCOMPILING_EMULATOR:STRING="${CMAKE_CROSSCOMPILING_EMULATOR}" \
+  -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=true \
+  -DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
+  ${SRC_DIR} \
 ;
 
 # build
@@ -37,26 +35,12 @@ cmake --build . --parallel ${CPU_COUNT} --verbose
 
 # test
 if [[ "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
-	CTEST_TIMEOUT="--timeout 3600"
+  CTEST_TIMEOUT="--timeout 3600"
 else
-	CTEST_TIMEOUT=""
+  CTEST_TIMEOUT=""
 fi
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
-	ctest --parallel ${CPU_COUNT} --verbose ${CTEST_TIMEOUT} || {
-	if [ "$(uname)" == "Linux" ]; then
-		# see https://git.ligo.org/ldastools/LDAS_Tools/-/issues/124
-		echo "WARNING: ctest failed";
-	elif [[ "$(uname)" == "Darwin" && "${OSX_ARCH}" == "x86_64" ]]; then
-		# test_downconvert_framecpp_sample_{N} fails non-deterministically
-		# on macOS 15 x86_64 -- different frame versions fail on different
-		# runs, indicating a flaky file-write/read race rather than a
-		# deterministic v7/v9 bug. Tracked at
-		# https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/286
-		echo "WARNING: ctest failed on macOS x86_64";
-	else
-		exit 1;
-	fi;
-	}
+  ctest --parallel ${CPU_COUNT} --verbose ${CTEST_TIMEOUT}
 fi
 
 # install

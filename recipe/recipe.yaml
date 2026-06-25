@@ -17,7 +17,7 @@ source:
 
 build:
   dynamic_linking:
-    overdepending_behaviour: error
+    overdepending_behavior: error
   number: 0
   skip:
     - win
