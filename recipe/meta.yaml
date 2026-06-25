@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp" %}
-{% set version = "4.0.3" %}
+{% set version = "4.1.0" %}
 
 # dependency versions
 {% set ldas_tools_al_version = "2.8.0" %}
@@ -11,14 +11,14 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: efa63df2fecc821a28ddab5bc5207d4b72f12f08aa66ed5acacbfa31904e9873
+  sha256: 8bfd356ccfbca9edc3e927a8750611e06b7f5650d216f12bcc7b3b24d8918901
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     - gtest
-  number: 1
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("ldas-tools-framecpp", max_pin="x.x") }}
