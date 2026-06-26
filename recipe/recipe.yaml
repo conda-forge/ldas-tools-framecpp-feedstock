@@ -17,6 +17,8 @@ source:
   patches:
     - if: osx
       then: largeframetest-timeout.patch
+    # Backport patch for https://git.ligo.org/computing/ldastools/LDAS_Tools/-/work_items/363
+    - test-fixtures_required.patch
 
 build:
   dynamic_linking:
