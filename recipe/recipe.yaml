@@ -14,11 +14,6 @@ package:
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
   sha256: 50e4f8cedfd059dd27f5bc1b2571126bf867bc4f35ecbd4438647f5008212043
-  patches:
-    - if: osx
-      then: largeframetest-timeout.patch
-    # Backport patch for https://git.ligo.org/computing/ldastools/LDAS_Tools/-/work_items/363
-    - test-fixtures_required.patch
 
 build:
   dynamic_linking:
