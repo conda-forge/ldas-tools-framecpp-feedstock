@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ldas-tools-framecpp
-  version: 4.1.0
+  version: "4.1.1"
   # dependency versions
   ldas_tools_al_version: 2.10.0
   ldas_tools_cmake_version: 1.5.0
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
-  sha256: 8bfd356ccfbca9edc3e927a8750611e06b7f5650d216f12bcc7b3b24d8918901
+  sha256: 50e4f8cedfd059dd27f5bc1b2571126bf867bc4f35ecbd4438647f5008212043
   patches:
     - if: osx
       then: largeframetest-timeout.patch
