@@ -1,4 +1,6 @@
 bot:
+  check_solvable: true
+bot:
   abi_migration_branches:
   - v2.9.x
 build_platform:
