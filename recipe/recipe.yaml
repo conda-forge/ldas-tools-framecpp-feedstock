@@ -2,9 +2,9 @@ schema_version: 1
 
 context:
   name: ldas-tools-framecpp
-  version: 4.1.0
+  version: 4.1.2
   # dependency versions
-  ldas_tools_al_version: 2.10.0
+  ldas_tools_al_version: 2.10.1
   ldas_tools_cmake_version: 1.5.0
 
 package:
@@ -13,12 +13,17 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
-  sha256: 8bfd356ccfbca9edc3e927a8750611e06b7f5650d216f12bcc7b3b24d8918901
+  sha256: 2f9a4ae8d7efd80f8d70f034d72e7c73126070508918b83b651e89c5c3de7680
   patches:
-    - if: osx
-      then: largeframetest-timeout.patch
-    # Backport patch for https://git.ligo.org/computing/ldastools/LDAS_Tools/-/work_items/363
-    - test-fixtures_required.patch
+    # Guard `add_test()` calls that reference $<TARGET_FILE:test_verify_options>
+    # against the target not existing on cross-compile arches (linux_aarch64,
+    # linux_ppc64le). See https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/405
+    # for the upstream fix request.
+    - verify-options-cross-compile.patch
+  # Two backport patches retired in 4.1.2 — both fixes landed upstream in 4.1.1:
+  #   test-fixtures_required.patch    #363 FIXTURES_REQUIRED typo fix
+  #   largeframetest-timeout.patch    #364 osx LargeFrameTest timeout raised to
+  #                                   600s via LARGE_FRAME_TEST_TIMEOUT variable
 
 build:
   dynamic_linking:

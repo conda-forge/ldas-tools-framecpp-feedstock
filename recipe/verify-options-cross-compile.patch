@@ -1,0 +1,56 @@
+From: Ed Maros <ed.maros@ligo.org>
+Date: Mon, 22 Sep 2026 00:00:00 -0700
+Subject: [PATCH] framecpp/test/CMakeLists: unify cross-compile guard across
+ middle test-with-target section
+
+The framecpp_target_executable() helper at test/CMakeLists.txt:52 early-returns
+under `CMAKE_CROSSCOMPILING AND NOT CMAKE_CROSSCOMPILING_EMULATOR`, and on
+conda-forge's cross-compile-with-qemu arches (linux_aarch64, linux_ppc64le)
+the emulator variable is passed empty to CMake even when qemu is available.
+As a result many test targets (`framecpp_verify`, `test_verify_options`,
+`test_serial_reader_no_toc`, `FrVectTypesTest`, ...) are silently not
+created — but the many `add_test(... COMMAND $<TARGET_FILE:X>)` sites
+in the same file reference them unconditionally, so CMake configure
+fails with e.g.:
+
+    CMake Error at test/CMakeLists.txt:243 (add_test):
+      Error evaluating generator expression:
+        $<TARGET_FILE:framecpp_verify>
+      No target "framecpp_verify"
+
+The file already correctly guards two contiguous ranges (604-642 and
+1271-1675) with
+
+    if(BUILD_TESTING AND NOT ( CMAKE_CROSSCOMPILING AND NOT CMAKE_CROSSCOMPILING_EMULATOR ))
+    ...
+    endif()
+
+but the middle range 643-1270 is unguarded. Merge the two protected
+ranges by removing the intermediate `endif()` at line 642 and the
+redundant `if()` at line 1271. The `endif()` at 1675 then closes the
+single outer guard that spans 604-1675, uniformly protecting every
+test-target reference in that range.
+
+Filed upstream as https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/405.
+---
+ test/CMakeLists.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -639,7 +639,6 @@
+     DEPENDS ${MINIMAL_FRAME_FILES}
+     COMMENT "Generating all minimal test frames for Verify class testing"
+   )
+-endif()
+
+ ##-----------------------------------------------------------------------
+ ## Systematic Verify Class Testing
+@@ -1268,7 +1267,6 @@
+ # Issue #119: also skip under cross-compile-without-emulator. The
+ # test_framecpp_structure helper below adds custom commands that run
+ # framecpp_sample at build time.
+-if(BUILD_TESTING AND NOT ( CMAKE_CROSSCOMPILING AND NOT CMAKE_CROSSCOMPILING_EMULATOR ))
+   # Define frame structures to test with their minimum supported version
+   # Version history based on PDFDefinitions.cc (ground truth from PDF specs):
+   # - v3: FrDetector, FrHistory, FrMsg, FrSummary, FrTrigData (original name for FrEvent)
