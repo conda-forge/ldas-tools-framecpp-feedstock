@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ldas-tools-framecpp
-  version: 4.1.2
+  version: "4.1.3"
   # dependency versions
   ldas_tools_al_version: 2.10.1
   ldas_tools_cmake_version: 1.5.0
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
-  sha256: 2f9a4ae8d7efd80f8d70f034d72e7c73126070508918b83b651e89c5c3de7680
+  sha256: 4c41f9117ca3f69c9b64f1f1d34a327a2d3ae3c6f68dd1884d52a2dfc880c703
   patches:
     # Guard `add_test()` calls that reference $<TARGET_FILE:test_verify_options>
     # against the target not existing on cross-compile arches (linux_aarch64,
